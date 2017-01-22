@@ -1,0 +1,32 @@
+{
+  "manifest_version": 2,
+  "name": "FilmWeb TPB search",
+  "description": "Przycisk wyszukiwarki thepiratebay na stronach FilmWeb",
+  "version": "1.1",
+  "short_name": "TPB",
+  "author": "Sajpo",
+
+  "browser_action": {
+          "default_icon": {                    
+            "16": "tpblogo.png"           
+          }   
+        },
+   "permissions": [
+    "activeTab",
+	"contextMenus"
+  ],
+   "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["autorun.js"]
+    }
+  ],
+	"icons": {
+          "128": "tpblogo.png"
+
+        },
+	"background": { 
+      "scripts": ["contextMenu.js"]
+    }
+
+}
