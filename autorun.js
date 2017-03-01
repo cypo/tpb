@@ -1,13 +1,14 @@
 document.addEventListener("click", createButton);
 
 var eow = document.getElementsByClassName("bottom-15")[0];
-var glowny = eow.childNodes[0];
+var glowny = eow.childNodes[0].childNodes[0];
 var polski = eow.childNodes[1];
+var rok = eow.childNodes[0].childNodes[0].childNodes[2];
 
 createButton();
 
 function createButton(){
-
+	//console.log(rok.textContent);
 	var check = document.getElementById('przycisk');
 	if(check==null && (window.location.hostname=='filmweb.pl' || window.location.hostname=='www.filmweb.pl')){
 
@@ -39,18 +40,57 @@ function createButton(){
 }
 
 function begin(){
-		var reg = /&/;
+	
+		var amp = /&/g;
+		var dash = /-/g;
+		var dashB = /–/g;
+		var slash = /\//g;
+		var bSlash = /\\/g;
+		var comma = /,/g;
+		var quotation = /"/g
+		var colon = /:/g;
+		var apostrof = /'/g;
+		var bracketA = /\(/g;
+		var bracketB = /\)/g;
 		var text = "";
+
 	if(polski!=null){
-		text = polski.textContent.replace(reg, "");
+		text = polski.textContent.replace(amp, "");
+		text = text.replace(colon, "");
+		text = text.replace(quotation, "");
+		text = text.replace(comma, "");
+		text = text.replace(dash, "");
+		text = text.replace(dashB, "");
+		text = text.replace(slash, "");
+		text = text.replace(bSlash, "");
+		text = text.replace(apostrof, "");
+		text = text.replace(bracketA, "");
+		text = text.replace(bracketB, "");
 	}
 	else{
-		text = glowny.childNodes[1].textContent.replace(reg, "");
+		text = glowny.childNodes[1].textContent.replace(amp, "");
+		text = text.replace(colon, "");
+		text = text.replace(quotation, "");
+		text = text.replace(comma, "");
+		text = text.replace(dash, "");
+		text = text.replace(dashB, "");
+		text = text.replace(slash, "");
+		text = text.replace(bSlash, "");
+		text = text.replace(apostrof, "");
+		text = text.replace(bracketA, "");
+		text = text.replace(bracketB, "");
 	}
 	
-	
 	if(polski!=null || glowny!=null){
-		window.open("https://thepiratebay.org/search/"+encodeURIComponent(text));
+		if(rok.textContent.match(/serial/)){
+			window.open("https://thepiratebay.org/search/"+encodeURIComponent(text));
+		}
+		else{
+		rok = rok.textContent.replace(bracketA, "");
+		rok = rok.replace(bracketB, "");
+		window.open("https://thepiratebay.org/search/"+encodeURIComponent(text)+" "+rok);			
+		}
+		
 	}
 	else{
 		console.log("[tpb] Nie wykryto tytułu");

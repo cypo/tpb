@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "FilmWeb TPB search",
   "description": "Przycisk wyszukiwarki thepiratebay na stronach FilmWeb",
-  "version": "1.1",
+  "version": "1.2.2",
   "short_name": "TPB",
   "author": "Sajpo",
 
